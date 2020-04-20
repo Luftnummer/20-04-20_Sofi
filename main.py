@@ -69,5 +69,28 @@ for var in variables.columns:
     plt.savefig(f'plots/scatter_{var}_DPR_seaborn.svg')
     
     plt.clf()
+    
+# scatter with circles
+plt.scatter(x = df['ROE'], y = df['DPR'],
+            c = df['FIRM SIZE'],
+            cmap = 'summer',
+            edgecolor = 'black',
+            linewidth = 1, # of the edge
+            alpha = .75) # size of the scatter plots)
 
+cbar = plt.colorbar()
+cbar.set_label('Firmsize')
+
+plt.xscale('log')
+plt.yscale('log')
+
+plt.title('Scatter')
+plt.xlabel('ROE')
+plt.ylabel('DPR')
+
+plt.tight_layout()
+
+plt.savefig(f'plots/scatter_with_colorbar.svg')
+
+plt.show()
 
