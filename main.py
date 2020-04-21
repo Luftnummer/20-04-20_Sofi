@@ -23,6 +23,9 @@ from matplotlib import pyplot as plt
 # read in the df
 df = pd.read_excel('data/dataset.xlsx')
 
+# lowercase the column names
+df.columns = df.columns.str.lower()
+
 
 
 # create a pairplot of the data using seaborn 
@@ -93,4 +96,26 @@ plt.tight_layout()
 plt.savefig(f'plots/scatter_with_colorbar.svg')
 
 plt.show()
+
+# create seaborn heatmap to see correlations
+corrMatrix = df.corr(method = 'spearman')
+
+sns.set(style = 'darkgrid',
+        context = 'paper', 
+        color_codes = True)
+
+ax = plt.subplot()
+ax = sns.heatmap(corrMatrix,
+                  annot = True, 
+                  cmap = 'summer')
+
+ax.set_title('Spearman correlation matrix')
+
+plt.tight_layout()
+
+plt.savefig(f'plots/corrMatrix.svg')
+
+plt.show()
+
+
 
